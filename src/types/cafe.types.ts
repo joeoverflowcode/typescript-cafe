@@ -1,19 +1,12 @@
-export type CafeCategory = "meal" | "snack" | "drink" | "dessert";
+import * as z from "zod"
 
-export interface CafeItemPreview {
-  id: string;
-  name: string;
-  imageUrl: string;
-  category: CafeCategory;
-}
+export const cafeItemSchema = z.object({
+  id: z.string(),
+  name: z.string(),
+  description: z.string()
+})
 
-export interface CafeItemDetail extends CafeItemPreview {
-    description: string;
-    ingredients: string[];
-    nutrition? : {
-        calories: number;
-        protein: number;
-        carbs: number;
-        fats: number;
-    }
-}
+export type CafeItem = z.infer<typeof cafeItemSchema>
+
+export const cafeMenuSchema = z.array(cafeItemSchema)
+export type CafeMenu = z.infer<typeof cafeMenuSchema>

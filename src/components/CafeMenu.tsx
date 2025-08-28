@@ -1,16 +1,16 @@
-import type { CafeItemPreview } from "../types/cafe.types";
+import type { CafeItem } from "../types/cafe.types";
 
 type CafeMenuProps = {
-  data: CafeItemPreview[];
+  data: CafeItem[];
 };
 const CafeMenu = ({ data }: CafeMenuProps) => {
   return (
     <div>
-      <h3>Mateo's Cafe Menu</h3>
+      <h3>Cafe Menu</h3>
       {data.map((item) => (
         <p key={item.id}> 
         {item.name} - {" "} 
-         {item.category}</p>
+         {item.description}</p>
       ))}
     </div>
   );
