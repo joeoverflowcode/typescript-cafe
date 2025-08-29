@@ -1,13 +1,13 @@
 import "./App.css";
-import CafeMenu from "./components/CafeMenu";
-import { validMenu } from "./data/cafe";
+import MenuList from "./components/MenuList";
+import { validMenu } from "./data/menu";
 
 
 function App() {
 
   return (
     <>
-      <CafeMenu data={validMenu}/>
+      <MenuList data={validMenu}/>
     </>
   );
 }

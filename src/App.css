@@ -40,3 +40,15 @@
 .read-the-docs {
   color: #888;
 }
+
+.menu-list {
+display: flex;
+flex-direction: column;
+gap: 10px;
+}
+
+.menu-card {
+  border: 1px white solid;
+  padding: 4px;
+  width: 14rem;
+}
