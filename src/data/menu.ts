@@ -1,23 +1,37 @@
-import { MenuSchema, type Menu } from "../types/menu.types";
-
-const menu = [
+import { menuItemSchema, menuItemArraySchema } from "../types/menu";
+import z from "zod";
+export const menu = [
   {
     id: "1",
-    name: "sandwich",
-    description: "ham and cheese sandwhich",
+    name: 56448,
+    description: "ham sandwich",
   },
   {
-    id: "2",
-    name: "drink",
+    id: 2,
+    name: "soda",
     description: "fountain drink",
+  },
+  {
+    id: "3",
+    name: "ice cream",
+    // description: "chocolate ice cream",
   },
 ];
 
-const validation = MenuSchema.safeParse(menu);
-if (!validation.success) {
-  validation.error;
-} else {
-  validation.data
-}
+export const validMenu: z.infer<typeof menuItemArraySchema> = [];
+export const invalidMenu: any[] = [];
 
-export const validMenu = validation.data;
+menu.forEach((item, idx) => {
+  const result = menuItemSchema.safeParse(item);
+
+  if (result.success) {
+    validMenu.push(result.data);
+  } else {
+    // const tree = z.treeifyError(result.error);
+    // console.log(`Invalid menu item at index ${idx}:`, item);
+    // console.log(tree);
+    const pretty = z.prettifyError(result.error)
+    // console.log(pretty)
+    invalidMenu.push({ item, error: pretty });
+  }
+});

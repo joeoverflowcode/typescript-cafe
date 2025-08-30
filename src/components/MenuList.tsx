@@ -1,21 +1,18 @@
-import type { Menu } from "../types/menu.types";
-import MenuCard from "./MenuCard";
+import type { MenuItem } from "../types/menu"
 
-type MenuProps = {
-  data?: Menu;
-};
-const MenuList = ({ data }: MenuProps) => {
-  if(!data) return<p>Loading Menu...</p>
+type MenuListProps= {
+    data: MenuItem[]
+}
+const MenuList = ({data}: MenuListProps) => {
   return (
-    <div>
-      <h3>Cafe Menu</h3>
-      <div className="menu-list">
-        {data.map((item) => (
-          <MenuCard key={item.id} item={item} />
-        ))}
-      </div>
+    <div><h3>Menu List</h3>
+    {data.map((item) => (
+        <div key={item.id}>
+            {item.name} - {item.description}
+        </div>
+    ))}
     </div>
-  );
-};
+  )
+}
 
-export default MenuList;
+export default MenuList
